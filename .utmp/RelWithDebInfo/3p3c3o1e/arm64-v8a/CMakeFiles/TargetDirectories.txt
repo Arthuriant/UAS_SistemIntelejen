@@ -1,0 +1,8 @@
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/GameActivity/CMakeFiles/game.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Users/Andika Rianto/UAS_SistemIntelejen/.utmp/RelWithDebInfo/3p3c3o1e/arm64-v8a/FramePacing/CMakeFiles/rebuild_cache.dir
