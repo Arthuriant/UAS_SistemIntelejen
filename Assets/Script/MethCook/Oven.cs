@@ -1,39 +1,41 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    public GameObject boxCoklatPrefab; // Drag prefab box hitam ke sini lewat inspector
-
-    private GameObject hitam;
+    public GameObject methHasilOven; // Drag prefab box hitam ke sini lewat inspector
+    public GameObject methHasilReshapeNampan;
+    private GameObject methInput;
     public TextMeshPro text;
 
-    private bool hitamDiDalam = false;
-    private float timerhitam = 0f;
+    private bool methInputDiDalam = false;
+    private float timermethInput = 0f;
     public float waktuTunggu = 5f;
+    private bool didalamOven = false;
 
     void Update()
     {
-        if (hitamDiDalam)
+        if (methInputDiDalam && didalamOven)
         {
-            timerhitam += Time.deltaTime;
+            timermethInput += Time.deltaTime;
 
             // Hitung waktu mundur
-            float waktuSisa = Mathf.Ceil(waktuTunggu - timerhitam);
+            float waktuSisa = Mathf.Ceil(waktuTunggu - timermethInput);
             waktuSisa = Mathf.Max(0, waktuSisa); // Biar gak negatif
             text.text = waktuSisa.ToString("0");
 
-            if (timerhitam >= waktuTunggu)
+            if (timermethInput >= waktuTunggu)
             {
-                Destroy(hitam);
-                // Spawn box hitam di atas mangkok
+                Destroy(methInput);
+                // Spawn box methInput di atas mangkok
                 Vector3 spawnPos = transform.position + Vector3.up * 1f;
-                Instantiate(boxCoklatPrefab, spawnPos, Quaternion.identity);
+                Instantiate(methHasilOven, spawnPos, Quaternion.identity);
 
                 // Reset supaya tidak terus ngespawn
-                hitam = null;
-                timerhitam = 0f;
-                hitamDiDalam = false;
+                methInput = null;
+                timermethInput = 0f;
+                methInputDiDalam = false;
                 text.text = ""; // Kosongkan tulisan setelah selesai
             }
         }
@@ -41,10 +43,21 @@ public class Oven : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Name Object:" + other.name + "Tag: "+ other.tag) ;
         if (other.CompareTag("Hitam"))
         {
-            hitamDiDalam = true;
-            hitam = other.gameObject;
+            methInput = other.GameObject();
+            Debug.Log("Reshape To Nampan");
+            reshapeMethToNampan();
+        }
+        else if (other.CompareTag("Oven"))
+        {
+            Debug.Log("Oven terdeteksi");
+            didalamOven = true;
+        }
+        else if (other.CompareTag("HitamReshape"))
+        {
+            Debug.Log("Meth Reshape in Area");
         }
     }
 
@@ -52,9 +65,22 @@ public class Oven : MonoBehaviour
     {
         if (other.CompareTag("Hitam"))
         {
-            hitamDiDalam = false;
-            timerhitam = 0f; // batalkan proses
+            methInputDiDalam = false;
+            timermethInput = 0f; // batalkan proses
             text.text = ""; // Kosongkan tulisan jika keluar
         }
+        else if (other.CompareTag("Oven"))
+        {
+            Debug.Log("Oven terdeteksi");
+            didalamOven = false;
+        }
+    }
+
+    private void reshapeMethToNampan()
+    {
+         Destroy(methInput);
+        // Spawn Bentuk Meth jadi yang seperti nampan
+        Vector3 spawnPos = transform.position;
+        Instantiate(methHasilReshapeNampan, spawnPos, Quaternion.identity);
     }
 }
