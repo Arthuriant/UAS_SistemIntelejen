@@ -15,14 +15,14 @@ public class Palu : MonoBehaviour
         {
             Destroy(Coklat);
 
-            Vector3 baseSpawnPos = TransCoklat.position + Vector3.up * 1f;
+            Vector3 baseSpawnPos = TransCoklat.position;
 
             for (int i = 0; i < 15; i++)
             {
                 Vector3 randomOffset = new Vector3(
                     0f,                          // Tidak ada variasi di X
                     0f,                          // Tidak ada variasi di Y
-                    Random.Range(-0.3f, 0.3f)    // Variasi hanya di Z
+                    Random.Range(-0.2f, 0.2f)    // Variasi hanya di Z
                 );
 
                 Vector3 spawnPos = baseSpawnPos + randomOffset;
