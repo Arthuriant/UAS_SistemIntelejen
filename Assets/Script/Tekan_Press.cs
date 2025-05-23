@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PushButton : XRBaseInteractable
+public class PushButton : UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable
 {
     [Header("Button Settings")]
     public float pressDepth = 0.02f;

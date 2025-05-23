@@ -2,16 +2,16 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(XRGrabInteractable))]
+[RequireComponent(typeof(UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable))]
 public class ThrowableInteractable : MonoBehaviour
 {
     private Rigidbody rb;
-    private XRGrabInteractable grabInteractable;
+    private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        grabInteractable = GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
 
         // Event: Saat objek dipegang
         grabInteractable.selectEntered.AddListener(OnGrab);
@@ -35,7 +35,7 @@ public class ThrowableInteractable : MonoBehaviour
         rb.isKinematic = false;
 
         // Dapatkan interactor (tangan)
-        var interactorObj = args.interactorObject as IXRInteractor;
+        var interactorObj = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.IXRInteractor;
         if (interactorObj != null)
         {
             var interactorGO = interactorObj.transform.gameObject;
