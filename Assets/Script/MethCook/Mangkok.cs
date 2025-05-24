@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class MangkokTrigger : MonoBehaviour
 {
-    public GameObject boxUnguPrefab; // Drag prefab box ungu ke sini lewat inspector
+    public GameObject methBubukPrefab; // Drag prefab box ungu ke sini lewat inspector
 
-    private GameObject merah, biru, hijau;
+    private GameObject phosporus, pusdo, acid;
     private bool sendokDiDalam = false;
     private float timerSendok = 0f;
     public float waktuTunggu = 5f;
@@ -17,19 +17,18 @@ public class MangkokTrigger : MonoBehaviour
 
             if (timerSendok >= waktuTunggu)
             {
-                if (merah != null && biru != null && hijau != null)
+                if (phosporus != null && pusdo != null && acid != null)
                 {
-                    Destroy(merah);
-                    Destroy(biru);
-                    Destroy(hijau);
+                    Destroy(phosporus);
+                    Destroy(pusdo);
+                    Destroy(acid);
 
-                    // Spawn box ungu di atas mangkok
+
                     Vector3 spawnPos = transform.position;
-                    Instantiate(boxUnguPrefab, spawnPos, Quaternion.identity);
+                    Instantiate(methBubukPrefab, spawnPos, Quaternion.identity);
 
-                    // Reset supaya tidak terus ngespawn
-                    merah = null;
-                    biru = null;
+                    phosporus = null;
+                    pusdo = null;
                     timerSendok = 0f;
                     sendokDiDalam = false;
                 }
@@ -39,17 +38,17 @@ public class MangkokTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Merah"))
+        if (other.CompareTag("Phosporus"))
         {
-            merah = other.gameObject;
+            phosporus = other.gameObject;
         }
-        else if (other.CompareTag("Biru"))
+        else if (other.CompareTag("Psudo"))
         {
-            biru = other.gameObject;
+            pusdo = other.gameObject;
         }
-        else if (other.CompareTag("Hijau"))
+        else if (other.CompareTag("Acid"))
         {
-            hijau = other.gameObject;
+            acid = other.gameObject;
         }
         else if (other.CompareTag("Sendok"))
         {

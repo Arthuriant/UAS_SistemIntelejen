@@ -1,86 +1,118 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    public GameObject methHasilOven; // Drag prefab box hitam ke sini lewat inspector
-    public GameObject methHasilReshapeNampan;
+    public GameObject methHasilOven; // Prefab hasil oven (box methBubukTermasak)
+    public GameObject methHasilReshapePrefab; // Prefab hasil reshape (nampan)
     private GameObject methInput;
+    private GameObject methHasilReshapeNampan;
+
     public TextMeshPro text;
 
     private bool methInputDiDalam = false;
+    private bool methReshapeDiDalam = false;
+    private bool didalamOven = false;
+
     private float timermethInput = 0f;
     public float waktuTunggu = 5f;
-    private bool didalamOven = false;
 
     void Update()
     {
-        if (methInputDiDalam && didalamOven)
+        if (methReshapeDiDalam && didalamOven)
         {
             timermethInput += Time.deltaTime;
 
-            // Hitung waktu mundur
             float waktuSisa = Mathf.Ceil(waktuTunggu - timermethInput);
-            waktuSisa = Mathf.Max(0, waktuSisa); // Biar gak negatif
+            waktuSisa = Mathf.Max(0, waktuSisa);
             text.text = waktuSisa.ToString("0");
 
             if (timermethInput >= waktuTunggu)
             {
-                Destroy(methInput);
-                // Spawn box methInput di atas mangkok
-                Vector3 spawnPos = transform.position + Vector3.up * 1f;
+                // Hapus objek hasil reshape
+                if (methHasilReshapeNampan != null)
+                    Destroy(methHasilReshapeNampan);
+
+                // Spawn hasil oven
+                Vector3 spawnPos = transform.position;
                 Instantiate(methHasilOven, spawnPos, Quaternion.identity);
 
-                // Reset supaya tidak terus ngespawn
-                methInput = null;
+                // Reset
+                methHasilReshapeNampan = null;
                 timermethInput = 0f;
-                methInputDiDalam = false;
-                text.text = ""; // Kosongkan tulisan setelah selesai
+                methReshapeDiDalam = false;
+                text.text = "";
             }
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Name Object:" + other.name + "Tag: "+ other.tag) ;
-        if (other.CompareTag("Hitam"))
+        Debug.Log("ENTER: " + other.name + " | Tag: " + other.tag);
+
+        if (other.CompareTag("methBubukTermasak"))
         {
-            methInput = other.GameObject();
-            Debug.Log("Reshape To Nampan");
+            Debug.Log("Meth Input Masuk");
+            methInput = other.gameObject;
             reshapeMethToNampan();
+        }
+        else if (other.CompareTag("methBlock"))
+        {
+            Debug.Log("Hasil Reshape Masuk");
+            methHasilReshapeNampan = other.gameObject;
+            methReshapeDiDalam = true;
         }
         else if (other.CompareTag("Oven"))
         {
-            Debug.Log("Oven terdeteksi");
+            Debug.Log("Nampan Masuk Oven");
             didalamOven = true;
-        }
-        else if (other.CompareTag("HitamReshape"))
-        {
-            Debug.Log("Meth Reshape in Area");
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Hitam"))
+        Debug.Log("EXIT: " + other.name + " | Tag: " + other.tag);
+
+        if (other.CompareTag("methBubukTermasak"))
         {
-            methInputDiDalam = false;
-            timermethInput = 0f; // batalkan proses
-            text.text = ""; // Kosongkan tulisan jika keluar
+            methInput = null;
+        }
+        else if (other.CompareTag("methBlock"))
+        {
+            methHasilReshapeNampan = null;
+            methReshapeDiDalam = false;
         }
         else if (other.CompareTag("Oven"))
         {
-            Debug.Log("Oven terdeteksi");
             didalamOven = false;
         }
     }
 
+    void OnTriggerStay(Collider other)
+{
+    if (other.CompareTag("methBlock") && !methReshapeDiDalam)
+    {
+        Debug.Log("Hasil Reshape tetap di dalam (OnTriggerStay)");
+        methHasilReshapeNampan = other.gameObject;
+        methReshapeDiDalam = true;
+    }
+
+    if (other.CompareTag("Oven") && !didalamOven)
+    {
+        Debug.Log("Masih di dalam oven (OnTriggerStay)");
+        didalamOven = true;
+    }
+}
+
+
     private void reshapeMethToNampan()
     {
-         Destroy(methInput);
-        // Spawn Bentuk Meth jadi yang seperti nampan
-        Vector3 spawnPos = transform.position;
-        Instantiate(methHasilReshapeNampan, spawnPos, Quaternion.identity);
+        if (methInput != null)
+        {
+            Destroy(methInput);
+            Vector3 spawnPos = transform.position;
+            methHasilReshapeNampan = Instantiate(methHasilReshapePrefab, spawnPos, Quaternion.identity);
+            methReshapeDiDalam = true;
+        }
     }
 }

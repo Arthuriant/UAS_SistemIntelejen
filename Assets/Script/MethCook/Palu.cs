@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class Palu : MonoBehaviour
 {
-    public GameObject CoklatShardPrefab; // Drag prefab box Coklat ke sini lewat inspector
+    public GameObject methBlockTerovenShardPrefab; // Drag prefab box methBlockTeroven ke sini lewat inspector
 
-    private GameObject Coklat;
-    private Transform TransCoklat;
+    private GameObject methBlockTeroven;
+    private Transform TransmethBlockTeroven;
 
-    private bool CoklatDiDalam = false;
+    private bool methBlockTerovenDiDalam = false;
 
     void Update()
     {
-        if (CoklatDiDalam)
+        if (methBlockTerovenDiDalam)
         {
-            Destroy(Coklat);
+            Destroy(methBlockTeroven);
 
-            Vector3 baseSpawnPos = TransCoklat.position + Vector3.up * 1f;
+            Vector3 baseSpawnPos = TransmethBlockTeroven.position + Vector3.up * 1f;
 
             for (int i = 0; i < 15; i++)
             {
@@ -26,31 +26,31 @@ public class Palu : MonoBehaviour
                 );
 
                 Vector3 spawnPos = baseSpawnPos + randomOffset;
-                Instantiate(CoklatShardPrefab, spawnPos, Quaternion.identity);
+                Instantiate(methBlockTerovenShardPrefab, spawnPos, Quaternion.identity);
             }
 
             // Reset supaya tidak terus ngespawn
-            Coklat = null;
-            CoklatDiDalam = false;
-            TransCoklat = null;
+            methBlockTeroven = null;
+            methBlockTerovenDiDalam = false;
+            TransmethBlockTeroven = null;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Coklat"))
+        if (other.CompareTag("methBlockTeroven"))
         {
-            CoklatDiDalam = true;
-            Coklat = other.gameObject;
-            TransCoklat = other.transform;
+            methBlockTerovenDiDalam = true;
+            methBlockTeroven = other.gameObject;
+            TransmethBlockTeroven = other.transform;
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Coklat"))
+        if (other.CompareTag("methBlockTeroven"))
         {
-            CoklatDiDalam = false;
+            methBlockTerovenDiDalam = false;
         }
     }
 }

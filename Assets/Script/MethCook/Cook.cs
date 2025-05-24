@@ -2,33 +2,33 @@ using UnityEngine;
 
 public class Cook : MonoBehaviour
 {
-    public GameObject boxHitamPrefab; // Drag prefab box ungu ke sini lewat inspector
+    public GameObject methBubukTermasak; // Drag prefab box methBubuk ke sini lewat inspector
 
-    private GameObject ungu;
+    private GameObject methBubuk;
     private bool statusAktif;
-    private bool unguDiDalam = false;
-    private float timerUngu = 0f;
+    private bool methBubukDiDalam = false;
+    private float timermethBubuk = 0f;
     public float waktuTunggu = 5f;
     private bool diatasBunsen = false;
 
     void Update()
     {
-        if (unguDiDalam && statusAktif && diatasBunsen)
+        if (methBubukDiDalam && statusAktif && diatasBunsen)
         {
             Debug.Log("OnProses");
-            timerUngu += Time.deltaTime;
+            timermethBubuk += Time.deltaTime;
 
-            if (timerUngu >= waktuTunggu)
+            if (timermethBubuk >= waktuTunggu)
             {
-                Destroy(ungu);
-                // Spawn box ungu di atas mangkok
-                Vector3 spawnPos = transform.position + Vector3.up * 1f;
-                Instantiate(boxHitamPrefab, spawnPos, Quaternion.identity);
+                Destroy(methBubuk);
+                // Spawn box methBubuk di atas mangkok
+                Vector3 spawnPos = transform.position;
+                Instantiate(methBubukTermasak, spawnPos, Quaternion.identity);
 
                 // Reset supaya tidak terus ngespawn
-                ungu = null;
-                timerUngu = 0f;
-                unguDiDalam = false;
+                methBubuk = null;
+                timermethBubuk = 0f;
+                methBubukDiDalam = false;
 
             }
         }
@@ -38,11 +38,11 @@ public class Cook : MonoBehaviour
     {
         Debug.Log("Masuk collider dengan objek: " + other.name + " | Tag: " + other.tag);
         
-        if (other.CompareTag("Ungu"))
+        if (other.CompareTag("methBubuk"))
         {
-            Debug.Log("Ungu terdeteksi");
-            unguDiDalam = true;
-            ungu = other.gameObject;
+            Debug.Log("methBubuk terdeteksi");
+            methBubukDiDalam = true;
+            methBubuk = other.gameObject;
         }
         else if (other.CompareTag("Bunsen"))
         {
@@ -54,10 +54,10 @@ public class Cook : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Ungu"))
+        if (other.CompareTag("methBubuk"))
         {
-            unguDiDalam = false;
-            timerUngu = 0f; // batalkan proses
+            methBubukDiDalam = false;
+            timermethBubuk = 0f; // batalkan proses
         }
     }
 

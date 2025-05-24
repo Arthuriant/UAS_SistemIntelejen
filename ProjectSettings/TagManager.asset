@@ -4,19 +4,22 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Merah
-  - Biru
-  - Ungu
   - Sendok
-  - Hitam
-  - Coklat
-  - Putih
   - Hijau
-  - CoklatMini
   - Hand
   - Bunsen
-  - HitamReshape
   - Oven
+  - Phosporus
+  - Psudo
+  - Acid
+  - methBubuk
+  - Merah
+  - CoklatMini
+  - methBubukTermasak
+  - methBlock
+  - methBlockTeroven
+  - methUnit
+  - methUnitPackaged
   layers:
   - Default
   - TransparentFX
