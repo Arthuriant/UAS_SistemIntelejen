@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class Packaging : MonoBehaviour
 {
-public GameObject boxmethUnitPackagedPrefab; // Drag prefab box coklat ke sini lewat inspector
+    public GameObject boxmethUnitPackagedPrefab;
 
     private GameObject coklat;
     private bool coklatDiDalam = false;
     private bool methUnitPackagedSpawn = false;
-
 
     void Update()
     {
@@ -19,11 +18,7 @@ public GameObject boxmethUnitPackagedPrefab; // Drag prefab box coklat ke sini l
             Instantiate(boxmethUnitPackagedPrefab, spawnPos, Quaternion.identity);
             methUnitPackagedSpawn = true;
             coklatDiDalam = false;
-
-            // Reset supaya tidak terus ngespawn
             coklat = null;
-            
-            
         }
     }
 
@@ -34,15 +29,16 @@ public GameObject boxmethUnitPackagedPrefab; // Drag prefab box coklat ke sini l
             coklatDiDalam = true;
             coklat = other.gameObject;
         }
-
     }
 
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("methUnit"))
         {
-            coklatDiDalam = false;  
-        }else if(other.CompareTag("methUnitPackaged")){
+            coklatDiDalam = false;
+        }
+        else if (other.CompareTag("methUnitPackaged"))
+        {
             methUnitPackagedSpawn = false;
         }
     }

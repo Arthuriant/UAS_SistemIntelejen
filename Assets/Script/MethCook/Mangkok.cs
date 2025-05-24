@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MangkokTrigger : MonoBehaviour
 {
-    public GameObject methBubukPrefab; // Drag prefab box ungu ke sini lewat inspector
+    public GameObject methBubukPrefab;
 
     private GameObject phosporus, pusdo, acid;
     private bool sendokDiDalam = false;
@@ -22,7 +22,6 @@ public class MangkokTrigger : MonoBehaviour
                     Destroy(phosporus);
                     Destroy(pusdo);
                     Destroy(acid);
-
 
                     Vector3 spawnPos = transform.position;
                     Instantiate(methBubukPrefab, spawnPos, Quaternion.identity);
@@ -53,7 +52,7 @@ public class MangkokTrigger : MonoBehaviour
         else if (other.CompareTag("Sendok"))
         {
             sendokDiDalam = true;
-            timerSendok = 0f; // mulai hitung waktu dari awal
+            timerSendok = 0f;
         }
     }
 
@@ -62,7 +61,7 @@ public class MangkokTrigger : MonoBehaviour
         if (other.CompareTag("Sendok"))
         {
             sendokDiDalam = false;
-            timerSendok = 0f; // batalkan proses
+            timerSendok = 0f;
         }
     }
 }

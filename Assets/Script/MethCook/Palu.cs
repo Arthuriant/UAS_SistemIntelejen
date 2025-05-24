@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Palu : MonoBehaviour
 {
-    public GameObject methBlockTerovenShardPrefab; // Drag prefab box methBlockTeroven ke sini lewat inspector
+    public GameObject methBlockTerovenShardPrefab;
 
     private GameObject methBlockTeroven;
     private Transform TransmethBlockTeroven;
-
     private bool methBlockTerovenDiDalam = false;
+    public AudioSource hammerSound;
 
     void Update()
     {
@@ -15,21 +15,20 @@ public class Palu : MonoBehaviour
         {
             Destroy(methBlockTeroven);
 
-            Vector3 baseSpawnPos = TransmethBlockTeroven.position + Vector3.up * 1f;
+            Vector3 baseSpawnPos = TransmethBlockTeroven.position;
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 25; i++)
             {
                 Vector3 randomOffset = new Vector3(
-                    0f,                          // Tidak ada variasi di X
-                    0f,                          // Tidak ada variasi di Y
-                    Random.Range(-0.3f, 0.3f)    // Variasi hanya di Z
+                    Random.Range(-0.05f, 0.05f),
+                    0f,
+                    Random.Range(-0.05f, 0.05f)
                 );
 
                 Vector3 spawnPos = baseSpawnPos + randomOffset;
                 Instantiate(methBlockTerovenShardPrefab, spawnPos, Quaternion.identity);
             }
 
-            // Reset supaya tidak terus ngespawn
             methBlockTeroven = null;
             methBlockTerovenDiDalam = false;
             TransmethBlockTeroven = null;
@@ -43,6 +42,7 @@ public class Palu : MonoBehaviour
             methBlockTerovenDiDalam = true;
             methBlockTeroven = other.gameObject;
             TransmethBlockTeroven = other.transform;
+            hammerSound.Play();
         }
     }
 

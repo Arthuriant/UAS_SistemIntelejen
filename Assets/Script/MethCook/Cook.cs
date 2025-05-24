@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Cook : MonoBehaviour
 {
-    public GameObject methBubukTermasak; // Drag prefab box methBubuk ke sini lewat inspector
+    public GameObject methBubukTermasak;
 
     private GameObject methBubuk;
     private bool statusAktif;
@@ -21,15 +21,12 @@ public class Cook : MonoBehaviour
             if (timermethBubuk >= waktuTunggu)
             {
                 Destroy(methBubuk);
-                // Spawn box methBubuk di atas mangkok
                 Vector3 spawnPos = transform.position;
                 Instantiate(methBubukTermasak, spawnPos, Quaternion.identity);
 
-                // Reset supaya tidak terus ngespawn
                 methBubuk = null;
                 timermethBubuk = 0f;
                 methBubukDiDalam = false;
-
             }
         }
     }
@@ -37,7 +34,7 @@ public class Cook : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Masuk collider dengan objek: " + other.name + " | Tag: " + other.tag);
-        
+
         if (other.CompareTag("methBubuk"))
         {
             Debug.Log("methBubuk terdeteksi");
@@ -51,13 +48,12 @@ public class Cook : MonoBehaviour
         }
     }
 
-
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("methBubuk"))
         {
             methBubukDiDalam = false;
-            timermethBubuk = 0f; // batalkan proses
+            timermethBubuk = 0f;
         }
     }
 
@@ -72,7 +68,4 @@ public class Cook : MonoBehaviour
         print("bunsen mati");
         statusAktif = false;
     }
-
-
-    
 }

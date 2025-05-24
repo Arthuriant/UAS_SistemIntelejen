@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    public GameObject methHasilOven; // Prefab hasil oven (box methBubukTermasak)
-    public GameObject methHasilReshapePrefab; // Prefab hasil reshape (nampan)
+    public GameObject methHasilOven; 
+    public GameObject methHasilReshapePrefab; 
+    public AudioSource ovenMusic;
+    public AudioSource ringMusic;
+    public GameObject pencahayaanOven;
     private GameObject methInput;
     private GameObject methHasilReshapeNampan;
 
-    public TextMeshPro text;
+    public TextMeshProUGUI text;
 
     private bool methInputDiDalam = false;
     private bool methReshapeDiDalam = false;
@@ -17,24 +20,42 @@ public class Oven : MonoBehaviour
     private float timermethInput = 0f;
     public float waktuTunggu = 5f;
 
+    private bool ovenMusicPlaying = false; 
+
     void Update()
     {
         if (methReshapeDiDalam && didalamOven)
         {
+            
+            if (!ovenMusicPlaying)
+            {
+                ovenMusic.Play();
+                ovenMusicPlaying = true;
+            }
+
+            pencahayaanOven.SetActive(true);
             timermethInput += Time.deltaTime;
 
             float waktuSisa = Mathf.Ceil(waktuTunggu - timermethInput);
             waktuSisa = Mathf.Max(0, waktuSisa);
-            text.text = waktuSisa.ToString("0");
+
+      
+            int menit = Mathf.FloorToInt(waktuSisa / 60f);
+            int detik = Mathf.FloorToInt(waktuSisa % 60f);
+            text.text = string.Format("{0:00}:{1:00}", menit, detik);
 
             if (timermethInput >= waktuTunggu)
             {
-                // Hapus objek hasil reshape
                 if (methHasilReshapeNampan != null)
                     Destroy(methHasilReshapeNampan);
 
-                // Spawn hasil oven
-                Vector3 spawnPos = transform.position;
+                ovenMusic.Stop();
+                ovenMusicPlaying = false; 
+                ringMusic.Play();
+                pencahayaanOven.SetActive(false);
+
+                Vector3 spawnPos = transform.position + new Vector3(0f, 0f, -0.030f);
+;
                 Instantiate(methHasilOven, spawnPos, Quaternion.identity);
 
                 // Reset
@@ -89,28 +110,27 @@ public class Oven : MonoBehaviour
     }
 
     void OnTriggerStay(Collider other)
-{
-    if (other.CompareTag("methBlock") && !methReshapeDiDalam)
     {
-        Debug.Log("Hasil Reshape tetap di dalam (OnTriggerStay)");
-        methHasilReshapeNampan = other.gameObject;
-        methReshapeDiDalam = true;
-    }
+        if (other.CompareTag("methBlock") && !methReshapeDiDalam)
+        {
+            Debug.Log("Hasil Reshape tetap di dalam (OnTriggerStay)");
+            methHasilReshapeNampan = other.gameObject;
+            methReshapeDiDalam = true;
+        }
 
-    if (other.CompareTag("Oven") && !didalamOven)
-    {
-        Debug.Log("Masih di dalam oven (OnTriggerStay)");
-        didalamOven = true;
+        if (other.CompareTag("Oven") && !didalamOven)
+        {
+            Debug.Log("Masih di dalam oven (OnTriggerStay)");
+            didalamOven = true;
+        }
     }
-}
-
 
     private void reshapeMethToNampan()
     {
         if (methInput != null)
         {
             Destroy(methInput);
-            Vector3 spawnPos = transform.position;
+            Vector3 spawnPos = transform.position + new Vector3(0f, 0f, -0.030f);
             methHasilReshapeNampan = Instantiate(methHasilReshapePrefab, spawnPos, Quaternion.identity);
             methReshapeDiDalam = true;
         }
