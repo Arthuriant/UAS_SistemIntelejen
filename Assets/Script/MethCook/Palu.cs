@@ -2,55 +2,55 @@ using UnityEngine;
 
 public class Palu : MonoBehaviour
 {
-    public GameObject CoklatShardPrefab; // Drag prefab box Coklat ke sini lewat inspector
+    public GameObject methBlockTerovenShardPrefab;
 
-    private GameObject Coklat;
-    private Transform TransCoklat;
-
-    private bool CoklatDiDalam = false;
+    private GameObject methBlockTeroven;
+    private Transform TransmethBlockTeroven;
+    private bool methBlockTerovenDiDalam = false;
+    public AudioSource hammerSound;
 
     void Update()
     {
-        if (CoklatDiDalam)
+        if (methBlockTerovenDiDalam)
         {
-            Destroy(Coklat);
+            Destroy(methBlockTeroven);
 
-            Vector3 baseSpawnPos = TransCoklat.position;
+            Vector3 baseSpawnPos = TransmethBlockTeroven.position;
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 25; i++)
             {
                 Vector3 randomOffset = new Vector3(
-                    0f,                          // Tidak ada variasi di X
-                    0f,                          // Tidak ada variasi di Y
-                    Random.Range(-0.2f, 0.2f)    // Variasi hanya di Z
+                    Random.Range(-0.05f, 0.05f),
+                    0f,
+                    Random.Range(-0.05f, 0.05f)
                 );
 
                 Vector3 spawnPos = baseSpawnPos + randomOffset;
-                Instantiate(CoklatShardPrefab, spawnPos, Quaternion.identity);
+                Instantiate(methBlockTerovenShardPrefab, spawnPos, Quaternion.identity);
             }
 
-            // Reset supaya tidak terus ngespawn
-            Coklat = null;
-            CoklatDiDalam = false;
-            TransCoklat = null;
+            methBlockTeroven = null;
+            methBlockTerovenDiDalam = false;
+            TransmethBlockTeroven = null;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Coklat"))
+        if (other.CompareTag("methBlockTeroven"))
         {
-            CoklatDiDalam = true;
-            Coklat = other.gameObject;
-            TransCoklat = other.transform;
+            methBlockTerovenDiDalam = true;
+            methBlockTeroven = other.gameObject;
+            TransmethBlockTeroven = other.transform;
+            hammerSound.Play();
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Coklat"))
+        if (other.CompareTag("methBlockTeroven"))
         {
-            CoklatDiDalam = false;
+            methBlockTerovenDiDalam = false;
         }
     }
 }

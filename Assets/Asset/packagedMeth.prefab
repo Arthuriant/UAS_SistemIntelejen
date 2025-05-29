@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: -8515759392549462856}
   m_Layer: 0
   m_Name: packagedMeth
-  m_TagString: Untagged
+  m_TagString: methUnitPackaged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.989, y: 0.615, z: -1.652}
-  m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8704006881836592904}

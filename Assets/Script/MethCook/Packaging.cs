@@ -3,47 +3,43 @@ using UnityEngine;
 
 public class Packaging : MonoBehaviour
 {
-public GameObject boxPutihPrefab; // Drag prefab box coklat ke sini lewat inspector
+    public GameObject boxmethUnitPackagedPrefab;
 
     private GameObject coklat;
     private bool coklatDiDalam = false;
-    private bool putihSpawn = false;
-
+    private bool methUnitPackagedSpawn = false;
 
     void Update()
     {
-        if (coklatDiDalam && !putihSpawn)
+        if (coklatDiDalam && !methUnitPackagedSpawn)
         {
             Destroy(coklat);
             Vector3 spawnPos = transform.position;
-            Instantiate(boxPutihPrefab, spawnPos, Quaternion.identity);
-            putihSpawn = true;
+            Instantiate(boxmethUnitPackagedPrefab, spawnPos, Quaternion.identity);
+            methUnitPackagedSpawn = true;
             coklatDiDalam = false;
-
-            // Reset supaya tidak terus ngespawn
             coklat = null;
-            
-            
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("CoklatMini"))
+        if (other.CompareTag("methUnit"))
         {
             coklatDiDalam = true;
             coklat = other.gameObject;
         }
-
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("CoklatMini"))
+        if (other.CompareTag("methUnit"))
         {
-            coklatDiDalam = false;  
-        }else if(other.CompareTag("Putih")){
-            putihSpawn = false;
+            coklatDiDalam = false;
+        }
+        else if (other.CompareTag("methUnitPackaged"))
+        {
+            methUnitPackagedSpawn = false;
         }
     }
 }
