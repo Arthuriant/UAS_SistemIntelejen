@@ -1,0 +1,11 @@
+Model Information:
+* title:	Welcome Sign Restaurant
+* source:	https://sketchfab.com/3d-models/welcome-sign-restaurant-2ae6379a6a6b4e18a64f1a40e9778937
+* author:	Yudhist.K.A (https://sketchfab.com/yudispedia)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Welcome Sign Restaurant" (https://sketchfab.com/3d-models/welcome-sign-restaurant-2ae6379a6a6b4e18a64f1a40e9778937) by Yudhist.K.A (https://sketchfab.com/yudispedia) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Serving Table
+* source:	https://sketchfab.com/3d-models/serving-table-2d993a898a624d8bab05b7ec02c51736
+* author:	BRT_GAMES (https://sketchfab.com/faithfullprogrammer)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Serving Table" (https://sketchfab.com/3d-models/serving-table-2d993a898a624d8bab05b7ec02c51736) by BRT_GAMES (https://sketchfab.com/faithfullprogrammer) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
