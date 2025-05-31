@@ -1,0 +1,8 @@
+Model Information:
+* title:	Cabine Photo Booth
+* source:	https://sketchfab.com/3d-models/cabine-photo-booth-fa64997cf2a94b2daf45d78780f62f1a
+* author:	pos4770 (https://sketchfab.com/pos4770)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

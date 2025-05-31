@@ -1,11 +1,11 @@
 Model Information:
-* title:	Wooden Table
-* source:	https://sketchfab.com/3d-models/wooden-table-76858e11feea48c7a4c7cbb4aa17e3e9
-* author:	bend1ct (https://sketchfab.com/bend1ct)
+* title:	Iona Extra Large Dining Table, Solid Pine & Grey
+* source:	https://sketchfab.com/3d-models/iona-extra-large-dining-table-solid-pine-grey-9d01fe9ddd5a42c3934ec426e55f8bd1
+* author:	MADE.COM (https://sketchfab.com/made-it)
 
 Model License:
-* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
-* requirements:	Author must be credited. Commercial use is allowed.
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
 
 If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
-This work is based on "Wooden Table" (https://sketchfab.com/3d-models/wooden-table-76858e11feea48c7a4c7cbb4aa17e3e9) by bend1ct (https://sketchfab.com/bend1ct) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+This work is based on "Iona Extra Large Dining Table, Solid Pine & Grey" (https://sketchfab.com/3d-models/iona-extra-large-dining-table-solid-pine-grey-9d01fe9ddd5a42c3934ec426e55f8bd1) by MADE.COM (https://sketchfab.com/made-it) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
