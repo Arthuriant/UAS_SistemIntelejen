@@ -17,6 +17,16 @@ TagManager:
   - Bunsen
   - HitamReshape
   - Oven
+  - methBubukTermasak
+  - methBubuk
+  - methUnit
+  - Psudo
+  - Phosporus
+  - Acid
+  - methBlockTeroven
+  - methBlock
+  - methUnitPackaged
+  - apiBunsen
   layers:
   - Default
   - TransparentFX

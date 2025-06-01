@@ -46,6 +46,10 @@ public class Cook : MonoBehaviour
             Debug.Log("Bunsen terdeteksi");
             diatasBunsen = true;
         }
+        else if (other.CompareTag("apiBunsen"))
+        {
+            KomporAktif();
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -55,7 +59,13 @@ public class Cook : MonoBehaviour
             methBubukDiDalam = false;
             timermethBubuk = 0f;
         }
+        else if (other.CompareTag("apiBunsen"))
+        {
+            KomporMati();
+        }
+
     }
+
 
     public void KomporAktif()
     {

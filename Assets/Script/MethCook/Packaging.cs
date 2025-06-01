@@ -11,7 +11,7 @@ public class Packaging : MonoBehaviour
 
     void Update()
     {
-        if (coklatDiDalam && !methUnitPackagedSpawn)
+        if (coklatDiDalam)
         {
             Destroy(coklat);
             Vector3 spawnPos = transform.position;
@@ -39,6 +39,7 @@ public class Packaging : MonoBehaviour
         }
         else if (other.CompareTag("methUnitPackaged"))
         {
+            Debug.Log("Keluar");
             methUnitPackagedSpawn = false;
         }
     }
