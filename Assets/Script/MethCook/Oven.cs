@@ -4,21 +4,19 @@ using UnityEngine;
 public class Oven : MonoBehaviour
 {
     public GameObject methHasilOven; 
-    public GameObject methHasilReshapePrefab; 
     public AudioSource ovenMusic;
     public AudioSource ringMusic;
     public GameObject pencahayaanOven;
-    private GameObject methInput;
     private GameObject methHasilReshapeNampan;
 
     public TextMeshProUGUI text;
 
-    private bool methInputDiDalam = false;
     private bool methReshapeDiDalam = false;
     private bool didalamOven = false;
 
     private float timermethInput = 0f;
     public float waktuTunggu = 5f;
+    private Vector3 spawnPos;
 
     private bool ovenMusicPlaying = false; 
 
@@ -54,7 +52,7 @@ public class Oven : MonoBehaviour
                 ringMusic.Play();
                 pencahayaanOven.SetActive(false);
 
-                Vector3 spawnPos = transform.position + new Vector3(0f, 0f, -0.030f);
+                
 ;
                 Instantiate(methHasilOven, spawnPos, Quaternion.identity);
 
@@ -71,22 +69,19 @@ public class Oven : MonoBehaviour
     {
         Debug.Log("ENTER: " + other.name + " | Tag: " + other.tag);
 
-        if (other.CompareTag("methBubukTermasak"))
-        {
-            Debug.Log("Meth Input Masuk");
-            methInput = other.gameObject;
-            reshapeMethToNampan();
-        }
-        else if (other.CompareTag("methBlock"))
+        if (other.CompareTag("methBlock"))
         {
             Debug.Log("Hasil Reshape Masuk");
             methHasilReshapeNampan = other.gameObject;
             methReshapeDiDalam = true;
+            spawnPos = other.transform.position;
         }
-        else if (other.CompareTag("Oven"))
+        else if (other.CompareTag("nampan"))
         {
             Debug.Log("Nampan Masuk Oven");
             didalamOven = true;
+
+
         }
     }
 
@@ -94,16 +89,12 @@ public class Oven : MonoBehaviour
     {
         Debug.Log("EXIT: " + other.name + " | Tag: " + other.tag);
 
-        if (other.CompareTag("methBubukTermasak"))
-        {
-            methInput = null;
-        }
-        else if (other.CompareTag("methBlock"))
+        if (other.CompareTag("methBlock"))
         {
             methHasilReshapeNampan = null;
             methReshapeDiDalam = false;
         }
-        else if (other.CompareTag("Oven"))
+        else if (other.CompareTag("nampan"))
         {
             didalamOven = false;
         }
@@ -118,21 +109,12 @@ public class Oven : MonoBehaviour
             methReshapeDiDalam = true;
         }
 
-        if (other.CompareTag("Oven") && !didalamOven)
+        if (other.CompareTag("nampan") && !didalamOven)
         {
             Debug.Log("Masih di dalam oven (OnTriggerStay)");
             didalamOven = true;
         }
     }
 
-    private void reshapeMethToNampan()
-    {
-        if (methInput != null)
-        {
-            Destroy(methInput);
-            Vector3 spawnPos = transform.position + new Vector3(0f, 0f, -0.030f);
-            methHasilReshapeNampan = Instantiate(methHasilReshapePrefab, spawnPos, Quaternion.identity);
-            methReshapeDiDalam = true;
-        }
-    }
+
 }

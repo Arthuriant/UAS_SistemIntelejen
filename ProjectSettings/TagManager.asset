@@ -27,6 +27,7 @@ TagManager:
   - methBlock
   - methUnitPackaged
   - apiBunsen
+  - nampan
   layers:
   - Default
   - TransparentFX
